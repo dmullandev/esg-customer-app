@@ -27,7 +27,7 @@ public class CustomerServiceTest {
     void GivenUserExist_WhenUserRepositoryGetUserByRef_ThenCustomerReturned() {
         Customer customer = customerService.getCustomer(TEST_USER_REF);
 
-        verify(customerRepository).getByCustomerRef(TEST_USER_NAME);
+        verify(customerRepository).getByCustomerRef(TEST_USER_REF);
         assertEquals(buildTestCustomer(), customer);
     }
 

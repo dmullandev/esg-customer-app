@@ -46,5 +46,11 @@ class StringCalculatorTest {
         Assertions.assertEquals(6, testSc.add("//;;\n1;;2;;3"));
     }
 
+    @Test
+    void testNegativenumbersThrowsException() {
+        IllegalArgumentException iae = Assertions.assertThrows(IllegalArgumentException.class, () -> testSc.add("//;;\n1;;2;;3;;-4;;-5"));
+        Assertions.assertEquals("Negatives not allowed: [-4, -5]", iae.getMessage());
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package io.dmullandev.esg.codekata;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -28,6 +29,7 @@ public class StringCalculator {
         }
 
         int total = 0;
+        List<Integer> negativeNumbers = new ArrayList<>();
 
         String cleanedNumbers = setDelimiterAndGetNumbers(numbers);
         log.info("Numbers: {}", cleanedNumbers);
@@ -35,9 +37,19 @@ public class StringCalculator {
         List<String> numbersList = Arrays.asList(cleanedNumbers.split(delimiter));
         log.info("Numbers List: {}", numbersList);
 
+
+
         for (String digitStr : numbersList) {
             int digit = Integer.parseInt(digitStr);
-            total += digit;
+            if (digit < 0) {
+                negativeNumbers.add(digit);
+            } else if (digit <= 1000) {
+                total += digit;
+            }
+        }
+
+        if (!negativeNumbers.isEmpty()) {
+            throw new IllegalArgumentException("Negatives not allowed: " + negativeNumbers);
         }
 
         return total;
