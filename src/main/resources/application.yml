@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+    application:
+        name: esg-customer
+    datasource:
+        username: 'dmullandev'
+        password: 'password'
+        url: jdbc:postgresql://localhost:5432/customer
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                format_sql: true
+        show-sql: true
+    profiles:
+        active: default
+
+# ESG app properties
+# Elected to just point to a singular file, than use a monitor to watch a folder or potentially multiple file processing.
+esg:
+    csv:
+        file:
+            path: datasource/datasource.csv
+    api:
+        url: http://localhost:8080/
